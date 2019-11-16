@@ -19,8 +19,23 @@ CREATE TABLE Universities (
 	PRIMARY KEY (univID)
 );
 
+CREATE TABLE RSOEvents (
+	eventID INTEGER,
+	eventRating INTEGER,
+	eventName VARCHAR(128),
+	category VARCHAR(32),
+	descript TEXT,
+	eventDate DATETIME,
+	venue VARCHAR(128),
+	vAddress VARCHAR(128),
+	latitude FLOAT,
+	longitude FLOAT,
+	PRIMARY KEY (eventID)
+);
+
 CREATE TABLE SiteEvents (
 	eventID INTEGER,
+	eventRating INTEGER,
 	eventName VARCHAR(128),
 	category VARCHAR(32),
 	descript TEXT,
@@ -38,8 +53,10 @@ CREATE TABLE RSOs (
 	rsoID INTEGER,
 	rsoName VARCHAR,
 	ownerID INTEGER,
+	approved BIT,
 	PRIMARY KEY (rsoID)
 );
+
 
 
 /*============================== Memberships ==============================*/
@@ -57,10 +74,32 @@ CREATE TABLE UnivMemberships (
 	FOREIGN KEY (userID) REFERENCES Users (userID)
 );
 
-/*============================== Misc Relations ==============================*/
-CREATE TABLE EventOwners (
+/*============================== Event Relations ==============================*/
+CREATE TABLE UserEventOwners (
 	userID INTEGER,
 	eventID INTEGER,
+	FOREIGN KEY (userID) REFERENCES Users (userID),
+	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
+);
+
+CREATE TAble RSOEventOwners (
+	rsoID INTEGER,
+	eventID INTEGER,
+	FOREIGN KEY (rsoID) REFERENCES RSOs (rsoID),
+	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
+);
+
+CREATE TABLE EventApprovers (
+	userID INTEGER,
+	eventID INTEGER,
+	FOREIGN KEY (userID) REFERENCES Users (userID),
+	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
+)
+
+CREATE TABLE Comments (
+	userID INTEGER,
+	eventID INTEGER,
+	comment TEXT,
 	FOREIGN KEY (userID) REFERENCES Users (userID),
 	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
 );
