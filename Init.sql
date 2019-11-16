@@ -92,10 +92,12 @@ CREATE TABLE EventApprovers (
 )
 
 CREATE TABLE Comments (
+	commentID INTEGER,
 	userID INTEGER,
 	eventID INTEGER,
 	comment TEXT,
 	submitted DATETIME,
+	PRIMARY KEY (commentID),
 	FOREIGN KEY (userID) REFERENCES Users (userID),
 	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
 );
@@ -108,10 +110,12 @@ CREATE TABLE RSOEventOwners (
 );
 
 CREATE TABLE RSOComments (
+	commentID INTEGER,
 	userID INTEGER,
 	eventID INTEGER,
 	comment TEXT,
 	submitted DATETIME,
+	PRIMARY KEY (commentID),
 	FOREIGN KEY (userID) REFERENCES Users (userID),
 	FOREIGN KEY (eventID) REFERENCES RSOEvents (EventID)
 );
