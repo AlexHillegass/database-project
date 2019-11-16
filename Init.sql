@@ -95,6 +95,7 @@ CREATE TABLE Comments (
 	userID INTEGER,
 	eventID INTEGER,
 	comment TEXT,
+	submitted DATETIME,
 	FOREIGN KEY (userID) REFERENCES Users (userID),
 	FOREIGN KEY (eventID) REFERENCES SiteEvents (EventID)
 );
@@ -110,6 +111,7 @@ CREATE TABLE RSOComments (
 	userID INTEGER,
 	eventID INTEGER,
 	comment TEXT,
+	submitted DATETIME,
 	FOREIGN KEY (userID) REFERENCES Users (userID),
 	FOREIGN KEY (eventID) REFERENCES RSOEvents (EventID)
 );
