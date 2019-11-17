@@ -1,67 +1,68 @@
 -- Retrieves passwords
-SELECT pass FROM Users WHERE userID = ${value};
+SELECT pass FROM Users WHERE userID = @userID;
 
 -- Inserts new user
-INSERT INTO Users (userID, first_name, last_name, emailAdd, pass, clearance) VALUES (${userID}, ${first_name}, ${last_name}, ${emailAdd}, ${pass}, ${clearance});
-INSERT INTO UnivMemberships (univID, userID) VALUES (${univID, ${userID};
+INSERT INTO Users (userID, first_name, last_name, emailAdd, pass, clearance) VALUES (@userID, @first_name, last_name, @emailAdd, @pass, @clearance);
+INSERT INTO UnivMemberships (univID, userID) VALUES (@univID, @userID;
 
 -- Updates user info
-UPDATE Users SET ${field} = ${value} WHERE userID = ${userID};
+UPDATE Users SET @field = @value WHERE userID = @userID;
 
 -- Deletes a user
-DELETE FROM Users WHERE userID = ${userID};
+DELETE FROM Users WHERE userID = @userID;
 
 -- Inserts new University
-INSERT INTO Universities (univID, univName, creatorID) VALUES (${univID}, ${univName}, ${creatorID});
+INSERT INTO Universities (univID, univName, creatorID) VALUES (@univID, @univName, @creatorID);
 
 -- Updates University data
-UPDATE Universities SET ${field} = ${value} WHERE univID = ${univID};
+UPDATE Universities SET @field = @value WHERE univID = @univID;
 
 -- Deletes a University
-DELETE FROM Universities WHERE univID = ${univID};
+DELETE FROM Universities WHERE univID = @univID;
 
 -- Inserts a new public/private event
-INSERT INTO SiteEvents (eventID, eventRating, eventName, category, descript, eventDate, eventType, venue, vAddress, latitude, longitude, isApproved) VALUES (${eventID}, NULL, ${eventName}, ${category}, ${descript}, ${eventDate}, ${eventType}, ${venue}, ${vAddress}, ${latitude}, ${longitude}, ${isApproved});
-INSERT INTO UserEventOwners (userID, eventID) VALUES (${userID}, ${eventID});
+INSERT INTO SiteEvents (eventID, eventRating, eventName, category, descript, eventDate, eventType, venue, vAddress, latitude, longitude, isApproved) VALUES (@eventID, NULL, @eventName, @category, @descript, @eventDate, @eventType, @venue, @vAddress, @latitude, @longitude, @isApproved);
+INSERT INTO UserEventOwners (userID, eventID) VALUES (@userID, @eventID);
 
 -- Inserts a new RSO event
-INSERT INTO RSOEvents (eventID, eventRating, eventName, category, descript, eventDate, venue, vAddress, latitude, longitude) VALUES (${eventID}, NULL, ${eventName}, ${category}, ${descript}, ${eventDate}, ${venue}, ${vAddress}, ${latitude}, ${longitude});
-INSERT INTO RSOEventOwners (rsoID, eventID) VALUES (${rsoID}, ${eventID});
+INSERT INTO RSOEvents (eventID, eventRating, eventName, category, descript, eventDate, venue, vAddress, latitude, longitude) VALUES (@eventID, NULL, @eventName, @category, @descript, @eventDate, @venue, @vAddress, @latitude, @longitude);
+INSERT INTO RSOEventOwners (rsoID, eventID) VALUES (@rsoID, @eventID);
 
 -- Updates a public/private event
-UPDATE SiteEvents SET ${field} = ${value} WHERE eventID = ${eventID};
+UPDATE SiteEvents SET @field = @value WHERE eventID = @eventID;
 
 -- Deletes a public/private event
-DELETE FROM SiteEvents WHERE eventID = ${eventID};
+DELETE FROM SiteEvents WHERE eventID = @eventID;
 
 -- Updates an RSO event
-UPDATE RSOEvents SET ${field} = ${value} WHERE eventID = ${eventID};
+UPDATE RSOEvents SET @field = @value WHERE eventID = @eventID;
 
 -- Deletes an RSO event
-DELETE FROM RSOEvents WHERE eventID = ${eventID};
+DELETE FROM RSOEvents WHERE eventID = @eventID;
 
 -- Updates a Public/Private Event comment
-INSERT INTO Comments (userID, eventID, comment) VALUES (${userID}, ${eventID}, ${comment});
+INSERT INTO Comments (userID, eventID, comment) VALUES (@userID, @eventID, @comment);
 
 -- Delets a public/private event comment
-DELETE FROM Comments WHERE commentID = ${commentID}
+DELETE FROM Comments WHERE commentID = @commentID
+
 -- Updates an RSO event comment
-INSERT INTO RSOComments (userID, eventID, comment) VALUES (${userID}, ${eventID}, ${comment});
+INSERT INTO RSOComments (userID, eventID, comment) VALUES (@userID, @eventID, @comment);
 
 -- Deletes an RSO event comment
-DELETE FROM RSOComments WHERE commentID = ${commentID};
+DELETE FROM RSOComments WHERE commentID = @commentID;
 
 -- Creates an RSO and sets it to pending
-INSERT INTO RSOs (rsoID, rsoName, ownerID, approved) VALUES (${rsoID}, ${rsoName}, ${ownerID}, 0);
+INSERT INTO RSOs (rsoID, rsoName, ownerID, approved) VALUES (@rsoID, @rsoName, @ownerID, 0);
 
 -- Updates an RSO's information
-UPDATE RSOs SET ${field} = ${value} WHERE rsoID = ${rsoID};
+UPDATE RSOs SET @field = @value WHERE rsoID = @rsoID;
 
 -- Deletes an RSO
-DELETE FROM RSOs WHERE rsoID = ${rsoID};
+DELETE FROM RSOs WHERE rsoID = @rsoID;
 
 -- Adds a user to an existing RSO
-INSERT INTO RSOMemberships (rsoID, userID) VALUES (${rsoID}, ${userID});
+INSERT INTO RSOMemberships (rsoID, userID) VALUES (@rsoID, @userID);
 
 -- Deletes a user from an existing RSO
-DELETE FROM RSOMemberships WHERE userID = ${userID} AND rsoID = ${rsoID};
+DELETE FROM RSOMemberships WHERE userID = @userID AND rsoID = @rsoID;
