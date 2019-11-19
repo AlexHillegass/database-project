@@ -1,19 +1,19 @@
-
 --====================================== Users ====================================================
 -- Inserts new user
 INSERT INTO Users (userID, first_name, last_name, emailAdd, pass, clearance) VALUES (@userID, @first_name, @last_name, @emailAdd, @pass, @clearance);
-INSERT INTO UnivMemberships (univID, userID) VALUES (@univID, @userID;
 
 -- Updates user info
 UPDATE Users SET @field = @value WHERE userID = @userID;
 
 -- Deletes a user
+DELETE FROM RSOMemberships WHERE userID = @userID;
+DELETE FROM UnivMemberships WHERE userID = @userID;
 DELETE FROM Users WHERE userID = @userID;
 
 -- Returns a field of a user
 SELECT @field FROM Users WHERE userID = @userID
 
--- Retrieves passwords
+-- Retrieves password
 SELECT pass FROM Users WHERE userID = @userID;
 
 --================================== Universities ===================================
@@ -24,10 +24,18 @@ INSERT INTO Universities (univID, univName, creatorID) VALUES (@univID, @univNam
 UPDATE Universities SET @field = @value WHERE univID = @univID;
 
 -- Deletes a University
+DELETE Users FROM Users INNER JOIN UnivMemberships UM ON Users.userID = UM.userID WHERE UM.userID = @userID;
+DELETE FROM UnivMemberships WHERE univID = @univID;
 DELETE FROM Universities WHERE univID = @univID;
 
 -- Returns a value from University
-SELECT @field FROM Universities WHERE univID = @univID
+SELECT @field FROM Universities WHERE univID = @univID;
+
+-- Returns a univID given a userID
+SELECT univID FROM UnivMemberships WHERE userID = @userID;
+
+-- Adds a user to a University
+INSERT INTO UnivMemberships (univID, userID) VALUES (@univID, @userID);
 
 --================================= RSO Events ============================================
 -- Inserts a new RSO event
@@ -92,6 +100,9 @@ DELETE FROM RSOs WHERE rsoID = @rsoID;
 -- Returns a field from an RSO
 SELECT @field FROM RSOs WHERE rsoID = @rsoID;
 
+-- Returns rsoIDs given a userID
+SELECT rsoID FROM RSOMemberships WHERE userID = @userID;
+
 -- Adds a user to an existing RSO
 INSERT INTO RSOMemberships (rsoID, userID) VALUES (@rsoID, @userID);
 
@@ -102,7 +113,7 @@ DELETE FROM RSOMemberships WHERE userID = @userID AND rsoID = @rsoID;
 SELECT DISTINCT rsoID FROM RSOMemberships GROUP BY rsoID HAVING COUNT(rsoID) < 5;
 
 -- Selects RSOs with at least 5 members, but are not approved
-SELECT DISTINCT Members.rsoID FROM  RSOs INNER JOIN RSOMemberships Members ON RSOs.rsoID = Members.rsoID WHERE  RSOs.approved != 1 GROUP BY Members.rsoID HAVING COUNT(Members.rsoID) > 5;
+SELECT DISTINCT Members.rsoID FROM  RSOs INNER JOIN RSOMemberships Members ON RSOs.rsoID = Members.rsoID WHERE  RSOs.approved != 1 GROUP BY Members.rsoID HAVING COUNT(Members.rsoID) > 4;
 
 -- Selects RSOs which are approved
 SELECT rsoID FROM RSOs WHERE approved = 1;
