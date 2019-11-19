@@ -704,7 +704,7 @@ module.export class SQL {
 
     getRSOsLTFive() {
         var query =
-        'SELECT DISTINCT rsoID FROM RSOMemberships WHERE COUNT(rsoID) < 5;';
+        'SELECT DISTINCT Members.rsoID FROM  RSOs INNER JOIN RSOMemberships Members ON RSOs.rsoID = Members.rsoID WHERE  RSOs.approved != 1 GROUP BY Members.rsoID HAVING COUNT(Members.rsoID) > 5';
 
         if(this.checkConnection()){
             request = new Request(
