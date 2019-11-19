@@ -21,7 +21,7 @@ class SQL {
           }
 
         this.connection = new Connection(config);
-        
+
     }
 
     checkConnection(){
@@ -39,7 +39,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'SELECT pass FROM Users WHERE userID = @id;';
 
         if(this.checkConnection()){
@@ -52,16 +52,16 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('userID', TYPES.NVarChar, id);
-    
+
             this.connection.execSql(request);
         }
     }
-    
+
     createUser(userID, first_name, last_name, emailAdd, pass, clearance, univID){
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO Users (userID, first_name, last_name, emailAdd, pass, clearance) VALUES (@userID, @first_name, @last_name, @emailAdd, @pass, @clearance);';
 
         if(this.checkConnection()){
@@ -79,14 +79,14 @@ class SQL {
             request.addParameter('emailAdd', TYPES.NVarChar, emailAdd);
             request.addParameter('pass', TYPES.NVarChar, pass);
             request.addParameter('clearance', TYPES.NVarChar, clearance);
-    
+
             this.connection.execSql(request);
         }
 
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO UnivMemberships (univID, userID) VALUES (@univID, @userID;';
 
         if(this.checkConnection()){
@@ -110,7 +110,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'UPDATE Users SET @field = @value WHERE userID = @userID;';
 
         if(this.checkConnection()){
@@ -125,7 +125,7 @@ class SQL {
             request.addParameter('field', TYPES.NVarChar, field);
             request.addParameter('value', TYPES.NVarChar, value);
             request.addParameter('userID', TYPES.NVarChar, userID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -134,7 +134,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM Users WHERE userID = @userID;';
 
         if(this.checkConnection()){
@@ -147,7 +147,7 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('userID', TYPES.NVarChar, userID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -156,7 +156,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO Universities (univID, univName, creatorID) VALUES (@univID, @univName, @creatorID);';
 
         if(this.checkConnection()){
@@ -171,7 +171,7 @@ class SQL {
             request.addParameter('univID', TYPES.NVarChar, univID);
             request.addParameter('univName', TYPES.NVarChar, univName);
             request.addParameter('creatorID', TYPES.NVarChar, creatorID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -181,7 +181,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'UPDATE Universities SET @field = @value WHERE univID = @univID;';
 
         if(this.checkConnection()){
@@ -196,7 +196,7 @@ class SQL {
             request.addParameter('field', TYPES.NVarChar, field);
             request.addParameter('value', TYPES.NVarChar, value);
             request.addParameter('univID', TYPES.NVarChar, univID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -205,7 +205,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM Universities WHERE univID = @univID;';
 
         if(this.checkConnection()){
@@ -218,7 +218,7 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('univID', TYPES.NVarChar, univID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -227,7 +227,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO SiteEvents (eventID, eventRating, eventName, category, descript, eventDate, eventType, venue, vAddress, latitude, longitude, isApproved) VALUES (@eventID, NULL, @eventName, @category, @descript, @eventDate, @eventType, @venue, @vAddress, @latitude, @longitude, @isApproved);';
 
         if(this.checkConnection()){
@@ -250,14 +250,14 @@ class SQL {
             request.addParameter('latitude', TYPES.NVarChar, latitude);
             request.addParameter('longitude', TYPES.NVarChar, longitude);
             request.addParameter('isApproved', TYPES.NVarChar, isApproved);
-    
+
             this.connection.execSql(request);
         }
 
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO UserEventOwners (userID, eventID) VALUES (@userID, @eventID);';
 
         if(this.checkConnection()){
@@ -271,7 +271,7 @@ class SQL {
             // third: value you would like to insert
             request.addParameter('userID', TYPES.NVarChar, userID);
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -280,7 +280,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO RSOEvents (eventID, eventRating, eventName, category, descript, eventDate, venue, vAddress, latitude, longitude) VALUES (@eventID, NULL, @eventName, @category, @descript, @eventDate, @venue, @vAddress, @latitude, @longitude);';
 
         if(this.checkConnection()){
@@ -301,14 +301,14 @@ class SQL {
             request.addParameter('vAddress', TYPES.NVarChar, vAddress);
             request.addParameter('latitude', TYPES.NVarChar, latitude);
             request.addParameter('longitude', TYPES.NVarChar, longitude);
-    
+
             this.connection.execSql(request);
         }
 
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO RSOEventOwners (rsoID, eventID) VALUES (@rsoID, @eventID);';
 
         if(this.checkConnection()){
@@ -322,7 +322,7 @@ class SQL {
             // third: value you would like to insert
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -332,7 +332,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'UPDATE SiteEvents SET @field = @value WHERE eventID = @eventID;';
 
         if(this.checkConnection()){
@@ -347,7 +347,7 @@ class SQL {
             request.addParameter('field', TYPES.NVarChar, field);
             request.addParameter('value', TYPES.NVarChar, value);
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -356,7 +356,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM SiteEvents WHERE eventID = @eventID;';
 
         if(this.checkConnection()){
@@ -369,7 +369,7 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -379,7 +379,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'UPDATE RSOEvents SET @field = @value WHERE eventID = @eventID;';
 
         if(this.checkConnection()){
@@ -394,7 +394,7 @@ class SQL {
             request.addParameter('field', TYPES.NVarChar, field);
             request.addParameter('value', TYPES.NVarChar, value);
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -403,7 +403,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM RSOEvents WHERE eventID = @eventID;';
 
         if(this.checkConnection()){
@@ -416,7 +416,7 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('eventID', TYPES.NVarChar, eventID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -425,7 +425,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO RSOs (rsoID, rsoName, ownerID, approved) VALUES (@rsoID, @rsoName, @ownerID, 0);';
 
         if(this.checkConnection()){
@@ -440,7 +440,7 @@ class SQL {
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
             request.addParameter('rsoName', TYPES.NVarChar, rsoName);
             request.addParameter('ownerID', TYPES.NVarChar, ownerID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -449,7 +449,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'UPDATE RSOs SET @field = @value WHERE rsoID = @rsoID;';
 
         if(this.checkConnection()){
@@ -464,7 +464,7 @@ class SQL {
             request.addParameter('field', TYPES.NVarChar, field);
             request.addParameter('value', TYPES.NVarChar, value);
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -473,7 +473,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM RSOs WHERE rsoID = @rsoID;';
 
         if(this.checkConnection()){
@@ -486,7 +486,7 @@ class SQL {
             // second: NVarChar works for chars and nums
             // third: value you would like to insert
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -495,7 +495,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'INSERT INTO RSOMemberships (rsoID, userID) VALUES (@rsoID, @userID);';
 
         if(this.checkConnection()){
@@ -509,7 +509,7 @@ class SQL {
             // third: value you would like to insert
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
             request.addParameter('userID', TYPES.NVarChar, userID);
-    
+
             this.connection.execSql(request);
         }
     }
@@ -518,7 +518,7 @@ class SQL {
         // SQL query goes here
         // values can be inserted by putting @varname
         // then adding a parameter at below
-        var query = 
+        var query =
         'DELETE FROM RSOMemberships WHERE userID = @userID AND rsoID = @rsoID;';
 
         if(this.checkConnection()){
@@ -532,7 +532,187 @@ class SQL {
             // third: value you would like to insert
             request.addParameter('rsoID', TYPES.NVarChar, rsoID);
             request.addParameter('userID', TYPES.NVarChar, userID);
-    
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getUserField(field, userID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM Users WHERE userID = @userID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('userID', TYPES.NVarChar, userID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getUnivField(field, univID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM Universities WHERE univID = @univID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('univID', TYPES.NVarChar, univID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getRSOEventField(field, eventID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM RSOEvents WHERE eventID = @eventID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('eventID', TYPES.NVarChar, eventID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getRSOEventCommentField(field, commentID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM RSOComments WHERE commentID = @commentID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('commentID', TYPES.NVarChar, commentID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getSiteEventField(field, eventID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM SiteEvents WHERE eventID = @eventID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('eventID', TYPES.NVarChar, eventID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getSiteEventCommentField(field, commentID) {
+        // SQL query goes here
+        // values can be inserted by putting @varname
+        // then adding a parameter at below
+        var query =
+        'SELECT @field FROM Comments WHERE commentID = @commentID;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            // first parameter: field name in databse
+            // second: NVarChar works for chars and nums
+            // third: value you would like to insert
+            request.addParameter('commentID', TYPES.NVarChar, commentID);
+            request.addParameter('field', TYPES.NVarChar, field)
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getApprovedRSOs() {
+        var query =
+        'SELECT rsoID FROM RSOs WHERE approved = 1';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getRSOsLTFive() {
+        var query =
+        'SELECT DISTINCT rsoID FROM RSOMemberships WHERE COUNT(rsoID) < 5;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
+            this.connection.execSql(request);
+        }
+    }
+
+    getApprovableRSOs() {
+        var query =
+        'SELECT DISTINCT RSOs.rsoID FROM RSOs, RSOMemberships Members WHERE RSOs.approved != 1 AND COUNT(Members.rsoID) > 4;';
+
+        if(this.checkConnection()){
+            request = new Request(
+                query,
+                (err) => { (err ? console.log(err) : null)}
+            );
+
             this.connection.execSql(request);
         }
     }
