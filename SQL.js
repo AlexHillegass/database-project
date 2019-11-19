@@ -3,7 +3,7 @@ var Request = require('tedious').Request;
 var TYPES = require('tedious').TYPES;
 var async = require('async');
 
-class SQL {
+module.export class SQL {
     constructor() {
         // Connection info for database
         this.config = {
@@ -729,4 +729,4 @@ class SQL {
             this.connection.execSql(request);
         }
     }
-}
+};
