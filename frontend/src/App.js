@@ -7,6 +7,7 @@ import Rsos from './pages/Rsos';
 import Rso from './pages/Rso';
 import Landing from './pages/Landing';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import AdministratorEvent from './pages/AdministratorEvent';
 
 function App() {
   return (
@@ -14,11 +15,12 @@ function App() {
       <div>
         <Switch>
           <Route path="/" exact component={Landing}/>
-          <Route path="/administrators/:aid" component={Administrator}/>
-          <Route path="/students/:sid/events" exact component={Events}/>
-          <Route path="/students/:sid/rsos" exact component={Rsos}/>
-          <Route path="/students/:sid/events/:eid" component={Event}/>
-          <Route path="/students/:sid/rsos/:rid" component={Rso}/>
+          <Route path="/administrators/:userID" exact component={Administrator}/>
+          <Route path="/administrators/:userID/events/:eventID" exact component={AdministratorEvent}/>
+          <Route path="/students/:userID/events" exact component={Events}/>
+          <Route path="/students/:userID/rsos" exact component={Rsos}/>
+          <Route path="/students/:userID/events/:eventID" component={Event}/>
+          <Route path="/students/:userID/rsos/:rsoID" component={Rso}/>
         </Switch>
       </div>
     </Router>
