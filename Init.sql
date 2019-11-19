@@ -19,6 +19,9 @@ CREATE TABLE Universities (
 	univID INTEGER,
 	univName VARCHAR(64),
 	creatorID INTEGER,
+	student_Count INTEGER,
+	univ_Desc Text,
+	univAddress VARCHAR(64),
 	PRIMARY KEY (univID)
 );
 
@@ -54,9 +57,10 @@ CREATE TABLE SiteEvents (
 
 CREATE TABLE RSOs (
 	rsoID INTEGER,
-	rsoName VARCHAR,
+	rsoName VARCHAR(64),
 	ownerID INTEGER,
 	approved BIT,
+	rso_Desc Text,
 	PRIMARY KEY (rsoID)
 );
 
