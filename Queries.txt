@@ -1,7 +1,7 @@
 --====================================== Users ====================================================
 -- Inserts new user
 INSERT INTO Users (userID, first_name, last_name, emailAdd, pass, clearance) VALUES (${userID}, ${first_name}, ${last_name}, ${emailAdd}, ${pass}, ${clearance});
-INSERT INTO UnivMemberships (univID, userID) VALUES (${univID, ${userID};
+INSERT INTO UnivMemberships (univID, userID) VALUES (${univID}, ${userID});
 
 -- Updates user info
 UPDATE Users SET ${field} = ${value} WHERE userID = ${userID};
@@ -81,6 +81,7 @@ SELECT ${field} FROM Comments WHERE commentID = ${commentID}
 --================================= RSOs ===================================
 -- Creates an RSO and sets it to pending
 INSERT INTO RSOs (rsoID, rsoName, ownerID, approved) VALUES (${rsoID}, ${rsoName}, ${ownerID}, 0);
+INSERT INTO RSOMemberships (rsoID, userID) VALUES (${rsoID}, ${ownerID});
 
 -- Updates an RSO's information
 UPDATE RSOs SET ${field} = ${value} WHERE rsoID = ${rsoID};
