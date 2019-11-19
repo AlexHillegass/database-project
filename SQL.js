@@ -809,7 +809,7 @@ class SQL {
                 console.log(err);
             } else {
         var query =
-        'SELECT DISTINCT rsoID FROM RSOMemberships WHERE COUNT(rsoID) < 5;';
+        'SELECT DISTINCT Members.rsoID FROM  RSOs INNER JOIN RSOMemberships Members ON RSOs.rsoID = Members.rsoID WHERE  RSOs.approved != 1 GROUP BY Members.rsoID HAVING COUNT(Members.rsoID) > 5';
 
             request = new Request(
                 query,
