@@ -2,6 +2,9 @@ import React from 'react';
 import '../App.css';
 import { Button, Divider, Form, Header, Dropdown } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+//import SQL from '../SQL';
+
+//var sql = new SQL();
 
 const userTypeOptions = [
     {
@@ -40,10 +43,12 @@ const userTypeOptions = [
         emailAdd: null,
         pass: null,
         clearance: null,
+        univID: null,
+
+
         loginPage: true,
         isStudent: true,
         redirect: false,
-        
       };
     }
   
@@ -57,13 +62,21 @@ const userTypeOptions = [
       }
   
       handleRequest() {
-        let successfulRequest = true;
+        let successfulRequest;
         
         // attempt to login or create user
         if (this.state.loginPage) {
-
+          if (this.state.userID == 'admin') this.setState({isStudent: false});
+          //let realPass = sql.getPassword(this.state.userID);
+          //let realClearance = sql.getUserField('clearance', this.state.userID);
+          //if (realPass == this.state.pass) {
+          //  if (realClearance == 2) this.state.isStudent = false;
+          //  else this.state.isStudent = true;
+            successfulRequest = true;
+     //     }
         } else {
-
+       //   let user = sql.createUser(this.state.userID, this.state.first_name, this.state.last_name, 
+       //     this.state.emailAdd, this.state.pass, this.state.clearance, this.univID);
         }
 
         if (successfulRequest) {
@@ -71,8 +84,7 @@ const userTypeOptions = [
                 redirect: true
             });
         } else {
-          // Alert if error 
-          alert();
+          alert("Invalid Attempt");
         }
 
       }

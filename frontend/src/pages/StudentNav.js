@@ -17,6 +17,9 @@ function StudentNav(props) {
                 <Link style={navStyle} to={`/students/${props.userID}/events`}>
                     <li>Events</li>
                 </Link>
+                <Link style={navStyle} to={'/'}>
+                    <li>Logout</li>
+                </Link>
             </ul>
         </nav>
     );

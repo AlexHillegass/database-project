@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import '../App.css';
 import StudentNav from './StudentNav';
-import { Table, Form, Header, Divider, Button, Modal, List } from 'semantic-ui-react';
+import { Table, Form, Header, Divider, Button, Modal, List, Container } from 'semantic-ui-react';
 
 const exampleRsos = [
     {
@@ -72,52 +72,51 @@ function Rsos({ match }) {
             <Header size='huge' textAlign='center'>
                 RSO List
             </Header>
-            <Table size='large'>
-                <Table.Body>
-                    <Table.Row>
-                        {rsos.map(rso => (
-                        <h1 key={rso.rsoID}>
-                            <Table.Cell>
-                                <Modal
-                                    trigger={<Button>{rso.rsoName + " Info"}</Button>}
-                                    header={rso.rsoName}
-                                    content={
-                                    <List bulleted>
-                                        <List.Item>{rso.ownerID+ ' is the owner of this RSO'}</List.Item>
-                                        <List.Item>{'This RSO is ' + (rso.approved == 1 ? 'approved' : 'not yet approved')}</List.Item>
-                                    </List>
-                                    }
-                                    actions={['Snooze', { key: 'done', content: 'Done', positive: true }]}
-                                />
-                                <Divider/>
-                                <Button color="green" onClick={() => requestJoinRso(rso.rsoID)}>
-                                    Join
-                                </Button>
-                            </Table.Cell>
-                        </h1>
-                        ))}
-                    </Table.Row>
-                </Table.Body>
-            </Table>
+            <Container textAlign='center'>
+                            {rsos.map(rso => (
+                            <h1 key={rso.rsoID}>
+                                    <Modal
+                                        trigger={<Button>{rso.rsoName + " Info"}</Button>}
+                                        header={rso.rsoName}
+                                        content={
+                                        <List bulleted>
+                                            <List.Item>{rso.ownerID+ ' is the owner of this RSO'}</List.Item>
+                                            <List.Item>{'This RSO is ' + (rso.approved == 1 ? 'approved' : 'not yet approved')}</List.Item>
+                                        </List>
+                                        }
+                                        actions={[{ key: 'close', content: 'Close', positive: true }]}
+                                    />
+                                    <Button color="green" onClick={() => requestJoinRso(rso.rsoID)}>
+                                        Join
+                                    </Button>
+                                    <Divider/>
+                            </h1>
+                            ))}
+            </Container>
 
             <Header size='huge' textAlign='center'>
-            Create a new Rso
+                Create a new Rso
             </Header>
-            <Form>
-                <Form.Input
-                  label='Name'
-                  placeholder='Name'
-                  onChange={e => setRsoName(e.target.value)}
-                />
-                <Form.Input
-                  label='Description'
-                  placeholder='Description'
-                  onChange={e => setDescript(e.target.value)}
-                />
-            </Form>
-            <Button color='black' onClick={() => requestCreateRso()}> 
-                Create
-            </Button>
+            <Container>
+                <Form>
+                    <Form.Input
+                    label='Name'
+                    placeholder='Name'
+                    onChange={e => setRsoName(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Description'
+                    placeholder='Description'
+                    onChange={e => setDescript(e.target.value)}
+                    />
+                </Form>
+                <Header textAlign='center'>
+                    <Button color='green' onClick={() => requestCreateRso()}> 
+                        Create
+                    </Button>
+                </Header>                
+                <br/>
+            </Container>
 
         </div>
 
