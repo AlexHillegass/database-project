@@ -2,9 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 import StudentNav from './StudentNav';
+<<<<<<< HEAD
 import { Table, Form, Header, Dropdown, Button } from 'semantic-ui-react';
 import axios from 'axios';
 
+=======
+import { Form, Header, Dropdown, Button, Container, Divider } from 'semantic-ui-react';
+>>>>>>> 9ed67bc56d11a38144b9314fa6e55241a257d7c8
 
 const exampleEvents = [
     {
@@ -122,80 +126,82 @@ function Events({ match }) {
             <Header size='huge' textAlign='center'>
                 Event List
             </Header>
-            <Table size='large'>
-                <Table.Body>
-                    <Table.Row>
+            <br></br>
+            <Container textAlign='center'>
                         {events.map(event => (
                         <h1 key={event.eventID}>
-                            <Table.Cell>
                                 <Link to={`events/${event.eventID}`}>
                                     {event.name}
                                 </Link>
-                            </Table.Cell>
+                                <Divider/>
                         </h1>
                         ))}
-                    </Table.Row>
-                </Table.Body>
-            </Table>
+            </Container>
+            <br></br>
 
             <Header size='huge' textAlign='center'>
             Create a new Event
             </Header>
-            <Form>
-                <Form.Input
-                  label='Name'
-                  placeholder='Name'
-                  onChange={e => setEventName(e.target.value)}
-                />
-                <Form.Input
-                  label='Category'
-                  placeholder='Category'
-                  onChange={e => setCategory(e.target.value)}
-                />
-                <Form.Input
-                  label='Description'
-                  placeholder='Description'
-                  onChange={e => setDescript(e.target.value)}
-                />
-                <Form.Input
-                  label='Date'
-                  placeholder='Date'
-                  onChange={e => setEventDate(e.target.value)}
-                />
-                <Form.Input
-                  label='Venue'
-                  placeholder='Venue'
-                  onChange={e => setVenue(e.target.value)}
-                />
-                <Form.Input
-                  label='Address'
-                  placeholder='Address'
-                  onChange={e => setVAddress(e.target.value)}
-                />
-                <Form.Input
-                  label='Latitude'
-                  placeholder='Latitude'
-                  onChange={e => setLatitude(e.target.value)}
-                />
-                <Form.Input
-                  label='Longitude'
-                  placeholder='Longitude'
-                  onChange={e => setLongitude(e.target.value)}
-                />
-                <Header size = 'tiny'>Hosting RSO</Header>
-                <Dropdown
-                    label='User Type'
-                    placeholder='User Type'
-                    size='big'
-                    fluid
-                    selection
-                    options={exampleAdminForRsos}
-                />
-            </Form>
-            <Button color='black' onClick={() => requestCreateEvent()}> 
-                Create
-            </Button>
-
+            <br></br>
+            <Container>
+                <Form>
+                    <Form.Input
+                    label='Name'
+                    placeholder='Name'
+                    onChange={e => setEventName(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Category'
+                    placeholder='Category'
+                    onChange={e => setCategory(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Description'
+                    placeholder='Description'
+                    onChange={e => setDescript(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Date'
+                    placeholder='Date'
+                    onChange={e => setEventDate(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Venue'
+                    placeholder='Venue'
+                    onChange={e => setVenue(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Address'
+                    placeholder='Address'
+                    onChange={e => setVAddress(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Latitude'
+                    placeholder='Latitude'
+                    onChange={e => setLatitude(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Longitude'
+                    placeholder='Longitude'
+                    onChange={e => setLongitude(e.target.value)}
+                    />
+                    <Header size = 'tiny'>Hosting RSO</Header>
+                    <Dropdown
+                        label='User Type'
+                        placeholder='User Type'
+                        size='big'
+                        fluid
+                        selection
+                        options={exampleAdminForRsos}
+                    />
+                </Form>
+                <Header textAlign='center'>
+                    <Button color='black' onClick={() => requestCreateEvent()}> 
+                        Create
+                    </Button>
+                </Header>
+                <br></br>
+            </Container>
         </div>
 
     );

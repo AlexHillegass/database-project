@@ -4,6 +4,9 @@ import { Button, Divider, Form, Header, Dropdown } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
+//import SQL from '../SQL';
+
+//var sql = new SQL();
 
 const userTypeOptions = [
     {
@@ -42,10 +45,12 @@ const userTypeOptions = [
         emailAdd: null,
         pass: null,
         clearance: null,
+        univID: null,
+
+
         loginPage: true,
         isStudent: true,
         redirect: false,
-        
       };
     }
   
@@ -59,7 +64,7 @@ const userTypeOptions = [
       }
   
       handleRequest() {
-        let successfulRequest = true;
+        let successfulRequest;
         
         // attempt to login or create user
         if (this.state.loginPage) { // login
@@ -90,8 +95,7 @@ const userTypeOptions = [
                 redirect: true
             });
         } else {
-          // Alert if error 
-          alert();
+          alert("Invalid Attempt");
         }
 
       }

@@ -4,24 +4,25 @@ import StudentNav from './StudentNav';
 import { Comment, Form, Button, Header, Segment, Divider, Modal, Input, Rating} from 'semantic-ui-react';
 import axios from 'axios';
 
+import { Comment, Form, Button, Header, Segment, Divider, Modal, Input, Rating, Container} from 'semantic-ui-react';
 
 const exampleComments = [
     {
-        commentID: '1',
+        commentID: 1,
         userID: 'dan',
-        submitted: '11/19/19',
+        submitted: '11/18/2019',
         comment: 'This event looks fun',
     },
     {
-        commentID: '2',
+        commentID: 2,
         userID: 'Ralph',
-        submitted: '11/20/19',
+        submitted: '11/18/2019',
         comment: 'This event looks cool',
     },
     {
-        commentID: '3',
+        commentID: 3,
         userID: 'Bob',
-        submitted: '11/21/19',
+        submitted: '11/18/2019',
         comment: 'This event looks bad',
     }
 ];
@@ -31,7 +32,7 @@ const exampleEvent = {
     eventName: 'Party USA',
     category: '11/19/19',
     descript: 'This event is good',
-    eventDate: '11/19/19',
+    eventDate: '11/19/2019',
     venue: 'Hard Rock',
     vAddres: '11242 Pine St',
 };
@@ -58,21 +59,18 @@ function DisplayComments(props) {
     }
 
     const requestCreateComment = async () => {
-        // only renders on immutable
-        const obj = {
-            i: 1,
-            commentID: this.commentID,
-            userID: this.state.userID,
-            eventID: this.eventID,
-            comment: this.comment,
-            submitted: this.submitted
-        };
-        axios.get('http://localhost/Backend/event.php?id='+this.state.id, obj)
-        .then(res => console.log(res.data));
+        // Create random comment id 10-10k
+        let newCommentID = Math.floor(Math.random() * 10000) + 10;
+        let today = new Date();
+        comments.push({
+            commentID: newCommentID,
+            userID: props.userID,
+            submitted: today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear(),
+            comment: commentText,
+        });
+        setCommentText(null);
 
-        alert(commentText);
-
-        fetchComments();
+        //fetchComments();
     }
 
     const requestDeleteComment = async (comment) => {
@@ -80,14 +78,14 @@ function DisplayComments(props) {
             axios.get('http://localhost/Backend/event.php?comment='+this.commentID, obj)
             .then(res => console.log(res.data));
             fetchComments();
-            alert(props.event.eventName);
+            setComments(comments.filter(c => c.commentID != comment.commentID));
         } else {
             alert("You do not have permission to do this.")
         }
+        //fetchComments();
     }
 
     const requestEditComment = async (comment) => {
-        alert(commentText);
         if (comment.userID == props.userID) {
             const obj = {
                 i: 1,
@@ -106,6 +104,10 @@ function DisplayComments(props) {
     }
 
     return (
+        <Container textAlign='left'>
+            <Header size='huge' textAlign='center'>
+                Event Comments
+            </Header>
             <Comment.Group>
                 {comments.map(comment => (
                     <h1 key={comment.commentID}>
@@ -136,6 +138,8 @@ function DisplayComments(props) {
                     <Button content='Add Comment' labelPosition='left' icon='edit' primary onClick={() => requestCreateComment()}/>
                 </Form>
             </Comment.Group>
+            <br></br>
+        </Container>
     );
 }
 
@@ -166,31 +170,34 @@ function Event({match}) {
             <Header size='huge' textAlign='center'>
                 Event Details
             </Header>
-            <Header attached>Event Name</Header>
-            <Segment attached>{event.eventName}</Segment>
-            <Header attached>Event Rating</Header>
-            <Segment attached>{event.eventRating}</Segment>
-            <Header attached>Event Category</Header>
-            <Segment attached>{event.category}</Segment>
-            <Header attached>Event Description</Header>
-            <Segment attached>{event.descript}</Segment>
-            <Header attached>Event Date</Header>
-            <Segment attached>{event.eventDate}</Segment>
-            <Header attached>Event Venue</Header>
-            <Segment attached>{event.venue}</Segment>
-            <Header attached>Event Address</Header>
-            <Segment attached>{event.vAddres}</Segment>
+            <br></br>
+            <Container textAlign='center'>
+                <Header attached>Event Name</Header>
+                <Segment attached>{event.eventName}</Segment>
+                <Header attached>Event Rating</Header>
+                <Segment attached>{event.eventRating}</Segment>
+                <Header attached>Event Category</Header>
+                <Segment attached>{event.category}</Segment>
+                <Header attached>Event Description</Header>
+                <Segment attached>{event.descript}</Segment>
+                <Header attached>Event Date</Header>
+                <Segment attached>{event.eventDate}</Segment>
+                <Header attached>Event Venue</Header>
+                <Segment attached>{event.venue}</Segment>
+                <Header attached>Event Address</Header>
+                <Segment attached>{event.vAddres}</Segment>
+            </Container>
+
 
             <Header textAlign='center' size = 'huge'>Your Rating</Header>
             <Header textAlign='center'>
                 <Rating onRate={(e, { rating }) => updateRating(rating)} maxRating={5} defaultRating={rating} icon='star' size='huge' />
             </Header>
-            
+            <br></br>
 
-            <Header size='huge' textAlign='center'>
-                Event Comments
-            </Header>
+            
             <DisplayComments eventID={match.params.eventID} userID={match.params.userID} event={event}/>
+
         </div>
     );
 }

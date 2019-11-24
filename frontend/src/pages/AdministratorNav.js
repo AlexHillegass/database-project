@@ -9,8 +9,8 @@ function AdministratorNav(props) {
 
     return (
         <nav>       
-                <Link style={navStyle} to={`/administrators/${props.userID}`}>
-                    <li>Administrator</li>
+                <Link style={navStyle} to={'/'}>
+                    Logout 
                 </Link>
         </nav>
     );

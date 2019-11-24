@@ -1,10 +1,13 @@
 import React, {useState, useEffect} from 'react';
 import '../App.css';
-import { Table, Form, Header, Button, Divider, Segment, Modal } from 'semantic-ui-react';
+import { Table, Form, Header, Button, Divider, Segment, Modal, Container } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import AdministratorNav from './AdministratorNav';
 import axios from 'axios';
 
+//import SQL from '../SQL';
+
+//var sql = new SQL();
 
 const exampleEvents = [
     {
@@ -30,10 +33,12 @@ function Administrator({match}) {
     const [descript, setDescript] = useState('');
     const [students, setStudents] = useState('');
     const [address, setAddress] = useState('');
+    const [univID, setUnivID] = useState('');
 
     const fetchUniversity = async () => {
+        // Get the university the user is with, if none set univ to null
 
-        setUniversity(exampleEvents);
+        setUniversity(null);
 
         if (university) {
             fetchEvents();
@@ -72,8 +77,9 @@ function Administrator({match}) {
 
     const requestApproveEvent = async (eventID) => {
         // approve event by eid
+        setEvents([]);
         
-        fetchEvents();
+        //fetchEvents();
     }
 
     if (university) {
@@ -173,34 +179,37 @@ function Administrator({match}) {
     } else {
         return (
         <div>
-             <Header size='huge' textAlign='center'>
-                Create a new University
-            </Header>
-            <Form>
-                <Form.Input
-                  label='Name'
-                  placeholder='Name'
-                  onChange={e => setName(e.target.value)}
-                />
-                <Form.Input
-                  label='Description'
-                  placeholder='Description'
-                  onChange={e => setDescript(e.target.value)}
-                />
-                <Form.Input
-                  label='Student Population'
-                  placeholder='Student Population'
-                  onChange={e => setStudents(e.target.value)}
-                />
-                <Form.Input
-                  label='Address'
-                  placeholder='Address'
-                  onChange={e => setAddress(e.target.value)}
-                />
-            </Form>
-            <Button color='black' onClick={() => requestCreateUniversity()}> 
-                Create
-            </Button>
+            <Container textAlign='center'>
+                <br/>
+                <Header size='huge' textAlign='center'>
+                    Create a new University
+                </Header>
+                <Form>
+                    <Form.Input
+                    label='Name'
+                    placeholder='Name'
+                    onChange={e => setName(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Description'
+                    placeholder='Description'
+                    onChange={e => setDescript(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Student Population'
+                    placeholder='Student Population'
+                    onChange={e => setStudents(e.target.value)}
+                    />
+                    <Form.Input
+                    label='Address'
+                    placeholder='Address'
+                    onChange={e => setAddress(e.target.value)}
+                    />
+                </Form>
+                <Button color='black' onClick={() => requestCreateUniversity()}> 
+                    Create
+                </Button>
+            </Container>
         </div>
         );
     }
