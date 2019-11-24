@@ -2,6 +2,8 @@ import React from 'react';
 import '../App.css';
 import { Button, Divider, Form, Header, Dropdown } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+
 
 const userTypeOptions = [
     {
@@ -60,10 +62,27 @@ const userTypeOptions = [
         let successfulRequest = true;
         
         // attempt to login or create user
-        if (this.state.loginPage) {
+        if (this.state.loginPage) { // login
+          const obj = {
+            i: 0
+          };
+          axios.get('http://localhost/Backend/landing.php', obj)
+          .then(res => console.log(res.data));
+          if(res.equals(this.pass)){
+            successfulRequest = true;
+          } else {
+            // successfulRequest = false;
+          }
 
-        } else {
-
+        } else { // create user
+          const obj = {
+            i: 0
+          };
+          axios.post('http://localhost/Backend/landing.php', obj)
+          .then(res => console.log(res.data));
+          if(!res){
+            successfulRequest = true;
+          }
         }
 
         if (successfulRequest) {

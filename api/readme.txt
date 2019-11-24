@@ -1,0 +1,2 @@
+This part of the project is not run in the project folder. This will only run using xampp with a mssql backend.
+Copy all of these files the the htdocs folder in the xampp install. Axios will handle retreiving and running the files.

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import '../App.css';
 import StudentNav from './StudentNav';
 import { Table, Form, Header, Divider, Button, Modal, List } from 'semantic-ui-react';
+import axios from 'axios';
 
 const exampleRsos = [
     {
@@ -64,6 +65,50 @@ function Rsos({ match }) {
             alert("Rso Creation Failed");
         }
     }
+    /*
+    const fetchRsos = async () => {
+        const obj = {
+            i: 2
+        };
+        axios.get('http://localhost/Backend/rsos.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+
+        // View a list of events
+        setRsos(res);
+    }
+
+    const requestCreateRso = async (rsoID, rsoName) => {
+        const obj = {
+            i: 1,
+            rsoID: rsoID,
+            rsoName: rsoName
+        };
+        axios.post('http://localhost/Backend/rsos.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+
+        if (res) {
+            alert("Rso Created");
+            fetchRsos();
+        } else {
+            alert("Rso Creation Failed");
+        }
+    }
+
+    const requestJoinRso = async (rsoID) => {
+        const obj = {
+            i: 0,
+            rsoID: rsoID
+        };
+        axios.post('http://localhost/Backend/rsos.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+
+        if (res) {
+            alert("Rso Joined");
+        } else {
+            alert("Rso Creation Failed");
+        }
+    }
+    */
 
     return (
         <div>

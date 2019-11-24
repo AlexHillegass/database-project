@@ -3,6 +3,8 @@ import '../App.css';
 import { Table, Form, Header, Button, Divider, Segment, Modal } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import AdministratorNav from './AdministratorNav';
+import axios from 'axios';
+
 
 const exampleEvents = [
     {
@@ -40,13 +42,26 @@ function Administrator({match}) {
 
     const requestCreateUniversity = async () => {
         // create university 
-
+        const obj = {
+            i: 0,
+            univID: this.univID,
+            univName: this.univName
+        };
+        axios.post('http://localhost/Backend/rsos.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
         fetchEvents();
     }
 
     const requestUpdateUniversity = async () => {
         // update university based on any new data
+        const obj = {
+            i: 0,
+            creatorID: this.creatorID,
+            univName: this.univName
 
+        };
+        axios.post('http://localhost/Backend/rsos.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
         fetchUniversity();
     }
 

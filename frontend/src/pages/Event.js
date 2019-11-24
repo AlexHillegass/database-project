@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import '../App.css';
 import StudentNav from './StudentNav';
 import { Comment, Form, Button, Header, Segment, Divider, Modal, Input, Rating} from 'semantic-ui-react';
+import axios from 'axios';
+
 
 const exampleComments = [
     {
@@ -44,12 +46,30 @@ function DisplayComments(props) {
     const [commentText, setCommentText] = useState('');
 
     const fetchComments = async () => {
-
+        const obj = {
+            i: 2
+        };
+        axios.get('http://localhost/Backend/event.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+        if(res){
+            setComments(res);
+        }
         setComments(exampleComments);
     }
 
     const requestCreateComment = async () => {
         // only renders on immutable
+        const obj = {
+            i: 1,
+            commentID: this.commentID,
+            userID: this.state.userID,
+            eventID: this.eventID,
+            comment: this.comment,
+            submitted: this.submitted
+        };
+        axios.get('http://localhost/Backend/event.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+
         alert(commentText);
 
         fetchComments();
@@ -57,6 +77,8 @@ function DisplayComments(props) {
 
     const requestDeleteComment = async (comment) => {
         if (comment.userID == props.userID) {
+            axios.get('http://localhost/Backend/event.php?comment='+this.commentID, obj)
+            .then(res => console.log(res.data));
             fetchComments();
             alert(props.event.eventName);
         } else {
@@ -67,7 +89,16 @@ function DisplayComments(props) {
     const requestEditComment = async (comment) => {
         alert(commentText);
         if (comment.userID == props.userID) {
-
+            const obj = {
+                i: 1,
+                commentID: this.commentID,
+                userID: this.state.userID,
+                eventID: this.eventID,
+                comment: this.comment,
+                submitted: this.submitted
+            };
+            axios.get('http://localhost/Backend/event.php?id='+this.state.id, obj)
+            .then(res => console.log(res.data));
             fetchComments();
         } else {
             alert("You do not have permission to do this.")

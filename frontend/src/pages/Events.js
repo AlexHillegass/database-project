@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 import StudentNav from './StudentNav';
 import { Table, Form, Header, Dropdown, Button } from 'semantic-ui-react';
+import axios from 'axios';
+
 
 const exampleEvents = [
     {
@@ -75,6 +77,43 @@ function Events({ match }) {
             alert("Event Creation Failed");
         }
     }
+    /*
+    const fetchEvents = async () => {
+        const obj = {
+            i: 1
+        };
+        axios.get('http://localhost/Backend/events.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+
+        // View a list of events
+        setEvents(res);
+    }
+    
+    const requestCreateEvent = async () => {
+        let success = false;
+        // send all the event data 
+        const obj = {
+            i: 0,
+            eventName: this.eventName,
+            category: this.category,
+            descript: this.descript,
+            eventDate: this.eventDate,
+            eventType: this.eventType,
+            venue: this.venue,
+            vAddress: this.vAddress,
+            latitude: this.latitude,
+            longitude: this.longitude
+        };
+        axios.post('http://localhost/Backend/events.php?id='+this.state.id, obj)
+        .then(res => console.log(res.data));
+        if (res) {
+            alert("Event Created");
+            fetchEvents();
+        } else {
+            alert("Event Creation Failed");
+        }
+    }
+    */
 
     return (
         <div>
